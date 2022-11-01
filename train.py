@@ -360,8 +360,9 @@ def train(model, device, config, epochs=5, batch_size=1, save_cp=True, log_step=
                     logging.info('Created checkpoint directory')
                 except OSError:
                     pass
-                torch.save(model.state_dict(), os.path.join(config.checkpoints, f'Yolov4_epoch{epoch + 1}.pth'))
-                logging.info(f'Checkpoint {epoch + 1} saved !')
+                save_dir = os.path.join(config.checkpoints, f'Yolov4_epoch{epoch + 1}.pth')
+                torch.save(model.state_dict(), save_dir)
+                logging.info(f'Checkpoint {epoch + 1} saved to dir: {save_dir}')
 
     writer.close()
 
