@@ -294,7 +294,20 @@ def train(model, device, config, epochs=5, batch_size=1, save_cp=True, log_step=
             factor = 0.01
         return factor
 
-    optimizer = optim.Adam(model.parameters(), lr=config.learning_rate / config.batch, betas=(0.9, 0.999), eps=1e-08)
+    if config.TRAIN_OPTIMIZER.lower() == 'adam':
+        optimizer = optim.Adam(
+            model.parameters(),
+            lr=config.learning_rate / config.batch,
+            betas=(0.9, 0.999),
+            eps=1e-08,
+        )
+    elif config.TRAIN_OPTIMIZER.lower() == 'sgd':
+        optimizer = optim.SGD(
+            params=model.parameters(),
+            lr=config.learning_rate / config.batch,
+            momentum=config.momentum,
+            weight_decay=config.decay,
+        )
     scheduler = optim.lr_scheduler.LambdaLR(optimizer, burnin_schedule)
 
     criterion = Yolo_loss(device=device, batch=config.batch // config.subdivisions,n_classes=config.classes)
@@ -387,6 +400,10 @@ def get_args(**kwargs):
     parser.add_argument('-train_label_path',dest='train_label',type=str,default='train.txt',help="train label path")
     parser.add_argument('-experiment',dest='experiment',type=str,default='experiment',help="name of the experiment")
     parser.add_argument('-epochs',dest='TRAIN_EPOCHS',type=int,default=10,help="number of training epochs")
+    parser.add_argument(
+        '-optimizer', type=str, default='adam',
+        help='training optimizer',
+        dest='TRAIN_OPTIMIZER')
     args = vars(parser.parse_args())
 
     for k in args.keys():
