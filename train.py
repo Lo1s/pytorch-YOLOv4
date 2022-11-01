@@ -435,7 +435,10 @@ if __name__ == "__main__":
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
     logging.info(f'Using device {device}')
 
-    model = Yolov4(cfg.pretrained,n_classes=cfg.classes)
+    model = Yolov4(cfg.pretrained, n_classes=cfg.classes)
+    if cfg.load:
+        print(f'Loading saved model from: {cfg.load}')
+        torch.load(cfg.load)
 
     if torch.cuda.device_count() > 1:
         model = torch.nn.DataParallel(model)
