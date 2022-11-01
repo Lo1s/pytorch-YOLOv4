@@ -62,5 +62,5 @@ elif Cfg.cutmix:
 elif Cfg.mosaic:
     Cfg.mixup = 3
 
-Cfg.checkpoints = 'checkpoints'
+Cfg.checkpoints = '/content/drive/MyDrive/pytorch-YOLOv4/checkpoints'
 Cfg.TRAIN_TENSORBOARD_DIR = 'log'
