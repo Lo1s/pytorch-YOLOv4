@@ -266,6 +266,7 @@ def train(model, device, config, epochs=5, batch_size=1, save_cp=True, log_step=
     # global_step = cfg.TRAIN_MINEPOCH * n_train
     global_step = 0
     logging.info(f'''Starting training:
+        Experiment       {config.experiment}
         Epochs:          {epochs}
         Batch size:      {config.batch}
         Subdivisions:    {config.subdivisions}
@@ -360,7 +361,7 @@ def train(model, device, config, epochs=5, batch_size=1, save_cp=True, log_step=
                     logging.info('Created checkpoint directory')
                 except OSError:
                     pass
-                save_dir = os.path.join(config.checkpoints, f'Yolov4_epoch{epoch + 1}.pth')
+                save_dir = os.path.join(config.checkpoints, f'Yolov4_epoch{epoch + 1}_{config.experiment}.pth')
                 torch.save(model.state_dict(), save_dir)
                 logging.info(f'Checkpoint {epoch + 1} saved to dir: {save_dir}')
 
@@ -384,6 +385,7 @@ def get_args(**kwargs):
     parser.add_argument('-pretrained',type=str,default=None,help='pretrained yolov4.conv.137')
     parser.add_argument('-classes',type=int,default=80,help='dataset classes')
     parser.add_argument('-train_label_path',dest='train_label',type=str,default='train.txt',help="train label path")
+    parser.add_argument('-experiment',dest='experiment',type=str,default='experiment',help="name of the experiment")
     parser.add_argument('-epochs',dest='TRAIN_EPOCHS',type=int,default=10,help="number of training epochs")
     args = vars(parser.parse_args())
 
