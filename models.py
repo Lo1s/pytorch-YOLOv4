@@ -439,7 +439,7 @@ if  __name__ == "__main__":
         print('Usage: ')
         print('  python models.py num_classes weightfile imgfile namefile')
 
-    pred_dir = 'predictions/'
+    pred_dir = '/content/drive/MyDrive/pycharm-YOLOv4/predictions/'
     if not os.path.exists(os.path.join(pred_dir, 'test')):
         os.makedirs(os.path.join(pred_dir, 'test'))
 
