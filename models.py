@@ -1,3 +1,5 @@
+import os.path
+
 import torch
 from torch import nn
 import torch.nn.functional as F
@@ -437,6 +439,10 @@ if  __name__ == "__main__":
         print('Usage: ')
         print('  python models.py num_classes weightfile imgfile namefile')
 
+    pred_dir = 'predictions/'
+    if not os.path.exists(pred_dir):
+        os.makedirs(pred_dir)
+
     model = Yolov4(n_classes=n_classes)
 
     pretrained_dict = torch.load(weightfile, map_location=torch.device('cuda'))
@@ -461,4 +467,5 @@ if  __name__ == "__main__":
     boxes = do_detect(model, sized, 0.5, n_classes,0.4, use_cuda)
 
     class_names = load_class_names(namesfile)
-    plot_boxes(img, boxes, 'predictions.jpg', class_names)
+    pred_img = os.path.join(pred_dir, imgfile)
+    plot_boxes(img, boxes, pred_img, class_names)
