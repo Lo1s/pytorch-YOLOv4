@@ -439,9 +439,9 @@ if  __name__ == "__main__":
         print('Usage: ')
         print('  python models.py num_classes weightfile imgfile namefile')
 
-    pred_dir = 'predictions/test/'
-    if not os.path.exists(pred_dir):
-        os.makedirs(pred_dir)
+    pred_dir = 'predictions/'
+    if not os.path.exists(os.path.join(pred_dir, 'test')):
+        os.makedirs(os.path.join(pred_dir, 'test'))
 
     model = Yolov4(n_classes=n_classes)
 
