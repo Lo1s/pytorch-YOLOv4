@@ -439,7 +439,7 @@ if  __name__ == "__main__":
         print('Usage: ')
         print('  python models.py num_classes weightfile imgfile namefile')
 
-    pred_dir = 'predictions/'
+    pred_dir = 'predictions/test/'
     if not os.path.exists(pred_dir):
         os.makedirs(pred_dir)
 
