@@ -365,8 +365,8 @@ def plot_boxes(img, boxes, savename=None, class_names=None):
             blue = get_color(0, offset, classes)
             rgb = (red, green, blue)
             text = class_names[cls_id]
-            font_size = 20
-            font = ImageFont.truetype("/usr/share/fonts/truetype/liberation/LiberationMono-Regular.ttf", font_size)
+            font_size = 25
+            font = ImageFont.truetype("/usr/share/fonts/truetype/liberation/LiberationSans-Bold.ttf", font_size)
             draw.text((x1, y1), text, fill=rgb, font=font)
         draw.rectangle([x1, y1, x2, y2], outline=rgb)
     if savename:
