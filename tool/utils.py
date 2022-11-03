@@ -366,7 +366,7 @@ def plot_boxes(img, boxes, savename=None, class_names=None):
             rgb = (red, green, blue)
             text = class_names[cls_id]
             font_size = 20
-            font = ImageFont.truetype("Tests/fonts/FreeMono.ttf", font_size)
+            font = ImageFont.truetype("/usr/share/fonts/truetype/freefont/FreeMono.ttf", font_size)
             draw.text((x1, y1), text, fill=rgb, font=font)
         draw.rectangle([x1, y1, x2, y2], outline=rgb)
     if savename:
