@@ -424,7 +424,8 @@ def do_detect(model, img, conf_thresh, n_classes, nms_thresh, use_cuda=1):
 
     list_features = model(img)
     print('-' * 99)
-    print(f'list_features: {list_features.size()}')
+    print(f'list_features len: {len(list_features)}')
+    print(f'list_features shape: {list_features[0].size()}')
     # print(f'image_path: {image_path}')
     # print(f'images: {images.size()}')
     # print(f'bboxes: {bboxes.size()}')
