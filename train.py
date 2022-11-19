@@ -346,7 +346,6 @@ def train(model, device, config, epochs=5, batch_size=1, save_cp=True, log_step=
                 if global_step % (log_step * config.subdivisions) == 0:
                     grid = torchvision.utils.make_grid(images)
                     writer.add_image('images', grid, 0)
-                    writer.add_graph(model, images)
                     writer.add_scalar('train/Loss', loss.item(), global_step)
                     writer.add_scalar('train/loss_xy', loss_xy.item(), global_step)
                     writer.add_scalar('train/loss_wh', loss_wh.item(), global_step)
