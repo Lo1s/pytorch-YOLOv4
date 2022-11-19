@@ -94,6 +94,7 @@ def test(model, config):
     for i, batch in enumerate(test_loader):
         images = batch[0]
         bboxes = batch[1]
+        image_path = batch[2]
 
         images = images.to(device=device, dtype=torch.float32)
         bboxes = bboxes.to(device=device)
@@ -101,6 +102,7 @@ def test(model, config):
         images = images.permute(0, 3, 1, 2)
         print('-' * 99)
         print(f'i: {i}')
+        print(f'image_path: {image_path}')
         print(f'images: {images.size()}')
         print(f'bboxes: {bboxes.size()}')
         print(f'bboxes: {bboxes}')

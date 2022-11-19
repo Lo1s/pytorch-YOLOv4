@@ -391,7 +391,7 @@ class Yolo_dataset(Dataset):
         except AttributeError:
             out_bboxes = np.array(out_bboxes.astype(object), dtype=np.float32)
             out_bboxes1[:min(out_bboxes.shape[0], self.cfg.boxes)] = out_bboxes[:min(out_bboxes.shape[0], self.cfg.boxes)]
-        return out_img, out_bboxes1
+        return out_img, out_bboxes1, img_path
 
 
 if __name__ == "__main__":
