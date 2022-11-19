@@ -70,13 +70,13 @@ def fill_truth_detection(bboxes, num_boxes, classes, flip, dx, dy, sx, sy, net_w
     if bboxes.shape[0] == 0:
         return bboxes, 10000
 
-    print(f'classes: {classes}')
-    print(f'bboxes shape: {bboxes.shape}')
-    print(f'bboxes[:, 0]: {bboxes[:, 0]}')
-    print(f'bboxes[:, 1]: {bboxes[:, 1]}')
-    print(f'bboxes[:, 2]: {bboxes[:, 2]}')
-    print(f'bboxes[:, 3]: {bboxes[:, 3]}')
-    print(f'bboxes[:, 4]: {bboxes[:, 4]}')
+    # print(f'classes: {classes}')
+    # print(f'bboxes shape: {bboxes.shape}')
+    # print(f'bboxes[:, 0]: {bboxes[:, 0]}')
+    # print(f'bboxes[:, 1]: {bboxes[:, 1]}')
+    # print(f'bboxes[:, 2]: {bboxes[:, 2]}')
+    # print(f'bboxes[:, 3]: {bboxes[:, 3]}')
+    # print(f'bboxes[:, 4]: {bboxes[:, 4]}')
     bboxes = bboxes[np.where((bboxes[:, 4] < classes) & (bboxes[:, 4] >= 0))[0]]
 
     if bboxes.shape[0] > num_boxes:
