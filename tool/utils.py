@@ -314,17 +314,17 @@ def plot_boxes_cv2(img, boxes, savename=None, class_names=None, color=None):
         else:
             rgb = (255, 0, 0)
         if len(box) >= 7 and class_names:
-            cls_conf = box[5]
-            cls_id = box[6]
-            print('%s: %f' % (class_names[cls_id], cls_conf))
+            class_confidence = box[5]
+            class_id = box[6]
+            print('%s: %f' % (class_names[class_id], class_confidence))
             classes = len(class_names)
-            offset = cls_id * 123457 % classes
+            offset = class_id * 123457 % classes
             red = get_color(2, offset, classes)
             green = get_color(1, offset, classes)
             blue = get_color(0, offset, classes)
             if color is None:
                 rgb = (red, green, blue)
-            img = cv2.putText(img, class_names[cls_id], (x1, y1), cv2.FONT_HERSHEY_SIMPLEX, 1.2, rgb, 1)
+            img = cv2.putText(img, class_names[class_id], (x1, y1), cv2.FONT_HERSHEY_SIMPLEX, 1.2, rgb, 1)
         img = cv2.rectangle(img, (x1, y1), (x2, y2), rgb, 1)
         filename, extension = os.path.splitext(savename)[0], '.jpg'
         savename = filename + '_result' + extension
@@ -366,10 +366,10 @@ def plot_boxes(img, boxes, savename=None, class_names=None):
             green = get_color(1, offset, classes)
             blue = get_color(0, offset, classes)
             rgb = (red, green, blue)
-            text = class_names[cls_id]
+            class_name = class_names[cls_id]
             font_size = 20
             font = ImageFont.truetype("/usr/share/fonts/truetype/liberation/LiberationSans-Bold.ttf", font_size)
-            draw.text((x1, y1), text, fill=rgb, font=font)
+            draw.text((x1, y1), class_name, fill=rgb, font=font)
         draw.rectangle([x1, y1, x2, y2], outline=rgb)
         filename, extension = os.path.splitext(savename)[0], '.jpg'
         savename = filename + '_result' + extension

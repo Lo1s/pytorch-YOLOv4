@@ -7,3 +7,4 @@ tqdm==4.43.0
 easydict==1.9
 Pillow==9.0.1
 tensorboardX
+opencv-python
