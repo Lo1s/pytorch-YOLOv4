@@ -104,7 +104,8 @@ def test(model, config):
         print(f'bboxes size: {bboxes.size()}')
         print(f'bboxes: {bboxes[0]}')
         for bbox in bboxes[0]:
-            print(f'bbox[4]: {bbox[4]}')
+            if bbox[0] and bbox[1] and bbox[2] and bbox[3]:
+                print(f'bbox[4]: {bbox[4]}')
 
         # print(f'i: {i}')
         # print(f'image_path: {image_path}')
