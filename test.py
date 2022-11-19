@@ -105,7 +105,7 @@ def test(model, config):
         for bbox in bboxes[0]:
             if bbox[0] and bbox[1] and bbox[2] and bbox[3]:
                 #print(f'bbox[4]: {bbox[4]}')
-                truth.append(bbox[4])
+                truth.append(bbox[4].item())
 
         # print(f'i: {i}')
         # print(f'image_path: {image_path}')
