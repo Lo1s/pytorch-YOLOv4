@@ -12,6 +12,7 @@
 '''
 import torch
 import torch.nn as nn
+import torchvision
 from torch.utils.data import DataLoader
 from torch import optim
 from tensorboardX import SummaryWriter
@@ -260,8 +261,7 @@ def train(model, device, config, epochs=5, batch_size=1, save_cp=True, log_step=
     writer = SummaryWriter(log_dir=config.TRAIN_TENSORBOARD_DIR,
                            filename_suffix=f'OPT_{config.TRAIN_OPTIMIZER}_LR_{config.learning_rate}_BS_{config.batch}_Sub_{config.subdivisions}_Size_{config.width}',
                            comment=f'OPT_{config.TRAIN_OPTIMIZER}_LR_{config.learning_rate}_BS_{config.batch}_Sub_{config.subdivisions}_Size_{config.width}')
-    writer.add_images('legend', torch.from_numpy(train_dataset.label2colorlegend2(cfg.DATA_CLASSES).transpose([2, 0, 1]))
-                      .to(device).unsqueeze(0))
+
     max_itr = config.TRAIN_EPOCHS * n_train
     # global_step = cfg.TRAIN_MINEPOCH * n_train
     global_step = 0
@@ -344,6 +344,9 @@ def train(model, device, config, epochs=5, batch_size=1, save_cp=True, log_step=
                     model.zero_grad()
 
                 if global_step % (log_step * config.subdivisions) == 0:
+                    grid = torchvision.utils.make_grid(images)
+                    writer.add_image('images', grid, 0)
+                    writer.add_graph(model, images)
                     writer.add_scalar('train/Loss', loss.item(), global_step)
                     writer.add_scalar('train/loss_xy', loss_xy.item(), global_step)
                     writer.add_scalar('train/loss_wh', loss_wh.item(), global_step)
