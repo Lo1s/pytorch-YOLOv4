@@ -101,8 +101,6 @@ def test(model, config):
 
         images = images.permute(0, 3, 1, 2)
         print('-' * 99)
-        print(f'bboxes size: {bboxes.size()}')
-        print(f'bboxes: {bboxes[0]}')
         for bbox in bboxes[0]:
             if bbox[0] and bbox[1] and bbox[2] and bbox[3]:
                 print(f'bbox[4]: {bbox[4]}')
