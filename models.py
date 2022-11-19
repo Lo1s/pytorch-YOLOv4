@@ -469,3 +469,12 @@ if  __name__ == "__main__":
     class_names = load_class_names(namesfile)
     pred_img = os.path.join(pred_dir, imgfile)
     plot_boxes(img, boxes, pred_img, class_names)
+
+    print('-' * 99)
+    for i in range(len(boxes)):
+        box = boxes[i]
+        if len(box) >= 7 and class_names:
+            cls_conf = box[5]
+            cls_id = box[6]
+            print('%s: %f' % (class_names[cls_id], cls_conf))
+    print('-' * 99)
