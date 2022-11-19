@@ -104,7 +104,9 @@ def test(model, config):
         print(f'i: {i}')
         # print(f'image_path: {image_path}')
         # print(f'images: {images.size()}')
-        # print(f'bboxes: {bboxes.size()}')
+        print(f'bboxes: {bboxes.size()}')
+        for bbox in enumerate(bboxes):
+            print(bbox)
         print('-' * 99)
 
         img = Image.open(image_path).convert('RGB')
@@ -119,9 +121,8 @@ def test(model, config):
         for i in range(len(boxes)):
             box = boxes[i]
             if len(box) >= 7 and class_names:
-                cls_conf = box[5]
                 cls_id = box[6]
-                print('%s: %f' % (class_names[cls_id], cls_conf))
+                print(f'predicted number: {class_names[cls_id]}, truth: {}')
         print('-' * 99)
 
         plot_boxes(img, boxes, pred_img, class_names)
