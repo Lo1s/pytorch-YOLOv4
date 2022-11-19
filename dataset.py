@@ -71,7 +71,7 @@ def fill_truth_detection(bboxes, num_boxes, classes, flip, dx, dy, sx, sy, net_w
         return bboxes, 10000
 
     print(f'classes: {classes}')
-    print(f'bboxes: {bboxes}')
+    print(f'bboxes shape: {bboxes.shape}')
     print(f'bboxes[:, 4]: {bboxes[:, 4]}')
     bboxes = bboxes[np.where((bboxes[:, 4] < classes) & (bboxes[:, 4] >= 0))[0]]
 
