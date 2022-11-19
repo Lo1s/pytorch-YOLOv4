@@ -11,7 +11,7 @@ from torch.utils.data import DataLoader
 from dataset import Yolo_dataset
 from models import Yolov4
 from cfg import Cfg
-
+from tool.utils import *
 from easydict import EasyDict as edict
 
 
@@ -77,7 +77,7 @@ def test(model, config):
 
     n_test = len(test_dataset)
 
-    test_loader = DataLoader(test_dataset, batch_size=config.batch // config.subdivisions, shuffle=True, num_workers=8,
+    test_loader = DataLoader(test_dataset, batch_size=1, shuffle=True, num_workers=8,
                             pin_memory=True, drop_last=True)
 
     writer = SummaryWriter(
@@ -97,11 +97,22 @@ def test(model, config):
 
         images = images.permute(0, 3, 1, 2)
         print('-' * 99)
+        print(f'i: {i}')
         print(f'images: {images.size()}')
+        print(f'bboxes: {bboxes.size()}')
+        print(f'bboxes: {bboxes}')
         print('-' * 99)
         bboxes_pred = model(images)
 
-        print(bboxes_pred)
+        # img = Image.open(imgfile).convert('RGB')
+        # sized = img.resize((608, 608))
+        #
+        # boxes = do_detect(model, sized, 0.5, n_classes, 0.4, use_cuda)
+        #
+        # class_names = load_class_names(namesfile)
+        # pred_img = os.path.join(pred_dir, imgfile)
+        # plot_boxes(img, boxes, pred_img, class_names)
+
 
 
 if __name__ == "__main__":
