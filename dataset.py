@@ -354,7 +354,7 @@ class Yolo_dataset(Dataset):
             print('-' * 99)
             print('truth')
             print(len(truth))
-            print(truth[4])
+            print(truth[len(truth) - 1][4])
             print('-' * 99)
             if (min_w_h / 8) < blur and blur > 1:  # disable blur if one of the objects is too small
                 blur = min_w_h / 8
