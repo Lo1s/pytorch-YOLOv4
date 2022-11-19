@@ -265,6 +265,7 @@ def train(model, device, config, epochs=5, batch_size=1, save_cp=True, log_step=
     max_itr = config.TRAIN_EPOCHS * n_train
     # global_step = cfg.TRAIN_MINEPOCH * n_train
     global_step = 0
+    config.experiment = f'{config.experiment}_batch-{config.batch}_optimizer-{config.optimizer}'
     logging.info(f'''Starting training:
         Experiment       {config.experiment}
         Epochs:          {epochs}
