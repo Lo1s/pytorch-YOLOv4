@@ -467,16 +467,6 @@ if  __name__ == "__main__":
     boxes = do_detect(model, sized, 0.5, n_classes, 0.4, use_cuda)
 
     class_names = load_class_names(namesfile)
-
-    print('-' * 99)
-    for i in range(len(boxes)):
-        box = boxes[i]
-        if len(box) >= 7 and class_names:
-            cls_conf = box[5]
-            cls_id = box[6]
-            print('%s: %f' % (class_names[cls_id], cls_conf))
-    print('-' * 99)
-
     pred_img = os.path.join(pred_dir, imgfile)
     plot_boxes(img, boxes, pred_img, class_names)
 

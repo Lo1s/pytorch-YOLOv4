@@ -114,6 +114,16 @@ def test(model, config):
 
         class_names = load_class_names(config.classes_path)
         pred_img = os.path.join(pred_dir, image_path)
+
+        print('-' * 99)
+        for i in range(len(boxes)):
+            box = boxes[i]
+            if len(box) >= 7 and class_names:
+                cls_conf = box[5]
+                cls_id = box[6]
+                print('%s: %f' % (class_names[cls_id], cls_conf))
+        print('-' * 99)
+
         plot_boxes(img, boxes, pred_img, class_names)
 
 
