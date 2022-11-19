@@ -103,8 +103,9 @@ def test(model, config):
         print('-' * 99)
         print(f'bboxes size: {bboxes.size()}')
         print(f'bboxes: {bboxes[0][0]}')
-        print(f'bboxes: {bboxes[2]}')
-        print(f'bboxes: {bboxes[2][4]}')
+        for bbox in bboxes[0]:
+            print(f'bbox: {bbox}')
+
         # print(f'i: {i}')
         # print(f'image_path: {image_path}')
         # print(f'images: {images.size()}')
