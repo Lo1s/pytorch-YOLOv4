@@ -122,7 +122,7 @@ def test(model, config):
             box = boxes[i]
             if len(box) >= 7 and class_names:
                 cls_id = box[6]
-                print(f'predicted number: {class_names[cls_id]}, truth: {}')
+                print(f'predicted number: {class_names[cls_id]}, truth: WIP')
         print('-' * 99)
 
         plot_boxes(img, boxes, pred_img, class_names)
