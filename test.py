@@ -54,12 +54,12 @@ def get_args(**kwargs):
     cfg = kwargs
     parser = argparse.ArgumentParser(description='Train the Model on images and target masks',
                                      formatter_class=argparse.ArgumentDefaultsHelpFormatter)
-    parser.add_argument('-nc', '--num_classes', metavar='NC', type=int, nargs='?', default=2,
-                        help='Number of Classes', dest='num_classes')
     parser.add_argument('-ch', '--checkpoint_path', metavar='S', type=str, nargs='?', default=None,
                         help='Path for the pretrained weights', dest='checkpoint_path')
-    parser.add_argument('-c', '--classses', dest='classes', type=str, default=None,
+    parser.add_argument('-c', '--classses', dest='classes', type=int, default=80,
                         help='Class names')
+    parser.add_argument('-cp', '--classes_path', metavar='CP', type=str, default=None,
+                        help='Path to classes', dest='classes_path')
     parser.add_argument('-dir', '--data-dir', type=str, default=None,
                         help='dataset dir', dest='dataset_dir')
     parser.add_argument('-l', '--running_locally', dest='running_locally', action='store_true',
@@ -114,7 +114,9 @@ if __name__ == "__main__":
 
     weight_file = cfg.checkpoint_path
 
-    model = Yolov4(n_classes=cfg.num_classes)
+    #model = Yolov4(cfg.pretrained, n_classes=cfg.classes)
+
+    model = Yolov4(n_classes=cfg.classes)
     if not cfg.running_locally:
         model.cuda()
         map_location = torch.device('cuda')
