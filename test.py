@@ -76,6 +76,9 @@ def test(model, config):
     test_dataset = Yolo_dataset(config.test_label, config)
 
     n_test = len(test_dataset)
+    print('-' * 99)
+    print(f'n_test: {n_test}')
+    print('-' * 99)
 
     test_loader = DataLoader(test_dataset, batch_size=1, shuffle=True, num_workers=8,
                             pin_memory=True, drop_last=True)
