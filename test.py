@@ -103,7 +103,10 @@ def test(model, config):
 if __name__ == "__main__":
     logging = init_logger(log_dir='logs')
     cfg = get_args(**Cfg)
+    print('-' * 99)
+    print('Config: ')
     pprint.pprint(cfg)
+    print('-' * 99)
 
     pred_dir = '/content/drive/MyDrive/pytorch-YOLOv4/predictions/'
     if not os.path.exists(os.path.join(pred_dir, 'test')) and not cfg.running_locally:
