@@ -100,17 +100,19 @@ def test(model, config):
         bboxes = bboxes.to(device=device)
 
         images = images.permute(0, 3, 1, 2)
-        print('-' * 99)
+        #print('-' * 99)
+        truth = []
         for bbox in bboxes[0]:
             if bbox[0] and bbox[1] and bbox[2] and bbox[3]:
-                print(f'bbox[4]: {bbox[4]}')
+                #print(f'bbox[4]: {bbox[4]}')
+                truth.append(bbox[4])
 
         # print(f'i: {i}')
         # print(f'image_path: {image_path}')
         # print(f'images: {images.size()}')
         # for bbox in enumerate(bboxes):
         #     print(bbox)
-        print('-' * 99)
+        #print('-' * 99)
 
         img = Image.open(image_path).convert('RGB')
         sized = img.resize((608, 608))
@@ -121,11 +123,16 @@ def test(model, config):
         pred_img = os.path.join(pred_dir, image_path)
 
         print('-' * 99)
+
+        predicted = []
         for i in range(len(boxes)):
             box = boxes[i]
             if len(box) >= 7 and class_names:
                 cls_id = box[6]
-                print(f'predicted number: {class_names[cls_id]}, truth: WIP')
+                predicted.append(class_names[cls_id])
+
+        print(f'Predicted: {predicted}')
+        print(f'Truth: {truth}')
         print('-' * 99)
 
         plot_boxes(img, boxes, pred_img, class_names)
