@@ -95,6 +95,7 @@ def test(model, config):
         images = images.to(device=device, dtype=torch.float32)
         bboxes = bboxes.to(device=device)
 
+        print(f'image: {images.size()}')
         bboxes_pred = model(images)
 
         print(bboxes_pred)
