@@ -423,6 +423,12 @@ def do_detect(model, img, conf_thresh, n_classes, nms_thresh, use_cuda=1):
     t2 = time.time()
 
     list_features = model(img)
+    print('-' * 99)
+    print(f'list_features: {list_features}')
+    # print(f'image_path: {image_path}')
+    # print(f'images: {images.size()}')
+    # print(f'bboxes: {bboxes.size()}')
+    print('-' * 99)
 
     list_features_numpy = []
     for feature in list_features:
