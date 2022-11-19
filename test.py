@@ -95,7 +95,7 @@ def test(model, config):
         images = images.to(device=device, dtype=torch.float32)
         bboxes = bboxes.to(device=device)
 
-        images = torch.transpose(images, (0, 3, 1, 2))
+        images = images.permute(0, 3, 1, 2)
         print('-' * 99)
         print(f'images: {images.size()}')
         print('-' * 99)
