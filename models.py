@@ -409,9 +409,6 @@ class Yolov4(nn.Module):
         self.head = Yolov4Head(output_ch)
 
     def forward(self, input):
-        print('-' * 99)
-        print(f'input: {input.size()}')
-        print('-' * 99)
         d1 = self.down1(input)
         d2 = self.down2(d1)
         d3 = self.down3(d2)

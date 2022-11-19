@@ -94,7 +94,7 @@ def test(model, config):
     for i, batch in enumerate(test_loader):
         images = batch[0]
         bboxes = batch[1]
-        image_path = batch[2]
+        image_path = batch[2][0]
 
         images = images.to(device=device, dtype=torch.float32)
         bboxes = bboxes.to(device=device)
@@ -103,20 +103,18 @@ def test(model, config):
         print('-' * 99)
         print(f'i: {i}')
         print(f'image_path: {image_path}')
-        print(f'images: {images.size()}')
-        print(f'bboxes: {bboxes.size()}')
-        print(f'bboxes: {bboxes}')
+        # print(f'images: {images.size()}')
+        # print(f'bboxes: {bboxes.size()}')
         print('-' * 99)
-        bboxes_pred = model(images)
 
-        # img = Image.open(imgfile).convert('RGB')
-        # sized = img.resize((608, 608))
-        #
-        # boxes = do_detect(model, sized, 0.5, n_classes, 0.4, use_cuda)
-        #
-        # class_names = load_class_names(namesfile)
-        # pred_img = os.path.join(pred_dir, imgfile)
-        # plot_boxes(img, boxes, pred_img, class_names)
+        img = Image.open(image_path).convert('RGB')
+        sized = img.resize((608, 608))
+
+        boxes = do_detect(model, sized, 0.5, config.classes, 0.4)
+
+        class_names = load_class_names(config.classes_path)
+        pred_img = os.path.join(pred_dir, image_path)
+        plot_boxes(img, boxes, pred_img, class_names)
 
 
 
