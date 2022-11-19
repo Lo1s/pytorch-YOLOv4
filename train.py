@@ -352,7 +352,7 @@ def train(model, device, config, epochs=5, batch_size=1, save_cp=True, log_step=
                     writer.add_scalar('train/loss_obj', loss_obj.item(), global_step)
                     writer.add_scalar('train/loss_cls', loss_cls.item(), global_step)
                     writer.add_scalar('train/loss_l2', loss_l2.item(), global_step)
-                    writer.add_scalar('lr', scheduler.get_last_lr(), global_step)
+                    writer.add_scalar('learning rate', scheduler.get_last_lr(), global_step)
                     '''
                     pbar.set_postfix({'loss (batch)': loss.item(), 'loss_xy': loss_xy.item(),
                                         'loss_wh': loss_wh.item(),
