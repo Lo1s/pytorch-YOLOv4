@@ -102,7 +102,7 @@ def test(model, config):
         images = images.permute(0, 3, 1, 2)
         print('-' * 99)
         print(f'bboxes size: {bboxes.size()}')
-        print(f'bboxes: {bboxes[0]}')
+        print(f'bboxes: {bboxes[0][0]}')
         print(f'bboxes: {bboxes[2]}')
         print(f'bboxes: {bboxes[2][4]}')
         # print(f'i: {i}')
