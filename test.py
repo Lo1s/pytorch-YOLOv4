@@ -101,12 +101,13 @@ def test(model, config):
 
         images = images.permute(0, 3, 1, 2)
         print('-' * 99)
-        print(f'i: {i}')
+        print(f'bbox truth: {bboxes[4]}')
+        # print(f'i: {i}')
         # print(f'image_path: {image_path}')
         # print(f'images: {images.size()}')
-        print(f'bboxes: {bboxes.size()}')
-        for bbox in enumerate(bboxes):
-            print(bbox)
+        print(f'bboxes size: {bboxes.size()}')
+        # for bbox in enumerate(bboxes):
+        #     print(bbox)
         print('-' * 99)
 
         img = Image.open(image_path).convert('RGB')
